@@ -1,0 +1,26 @@
+---
+- name: Install Microk8s master
+  hosts: microk8s_MASTER
+  gather_facts: yes
+  become: yes
+  vars:
+    microk8s_group_HA: microk8s_*
+    microk8s_enable_HA: true
+    istio: true
+    ingress: true
+
+- name: Install Microk8s workers
+  hosts: microk8s_WORKER
+  gather_facts: yes
+  become: yes
+  vars:
+    microk8s_group_WORKERS: microk8s_WORKER
+    microk8s_enable_HA: true
+    microk8s_group_HA: microk8s_*
+    istio: true
+    ingress: true
+
+  roles:
+    - microk8s-prereq
+    - ansible_role_microk8s
+    - k9s

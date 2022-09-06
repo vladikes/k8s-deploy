@@ -1,18 +1,8 @@
----
-k3s_cluster:
-  hosts:
-    kube-0:
-      ansible_user: ansible
-      ansible_host: 10.10.9.2
-      ansible_python_interpreter: /usr/bin/python3
-      k3s_control_node: true
-    kube-1:
-      ansible_user: ansible
-      ansible_host: 10.10.9.3
-      ansible_python_interpreter: /usr/bin/python3
-      k3s_control_node: true
-    kube-2:
-      ansible_user: ansible
-      ansible_host: 10.10.9.4
-      ansible_python_interpreter: /usr/bin/python3
-      k3s_control_node: true
+# microk8s 'master'
+[microk8s_MASTER]
+microk8s-1
+
+# all hosts participating in microk8s cluster as workers
+[microk8s_WORKER]
+microk8s-2
+microk8s-3
