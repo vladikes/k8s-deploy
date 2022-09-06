@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-k8s-deployment
+  namespace: flask-app
+spec:
+  selector:
+    matchLabels:
+      app: flask-k8s
+  template:
+    metadata:
+      labels:
+        app: flask-k8s
+    spec:
+      containers:
+        - name: flask-k8s
+          image: docker.io/vladikes/flask_app
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
